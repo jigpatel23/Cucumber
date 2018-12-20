@@ -1,8 +1,7 @@
 /**
  * 
  */
-package pageObjects;
-
+package mol.pageObjects;
 
 import java.util.List;
 import org.openqa.selenium.WebDriver;
@@ -23,14 +22,20 @@ public class MostSharedPageObj {
 
 	}
 
-	@FindBy(xpath = "//*[text()='Most Shared Right Now']")
+	@FindBy(how = How.XPATH, using = "//*[text()='Most Shared Right Now']")
 	public WebElement mostsharedtitle;
 
 	@FindBy(how = How.XPATH, using = "//*[@data-track-module='am-most_shared_articles^most_shared_articles']")
 	public WebElement mostsharedmodule;
 
-	@FindBy(css = ".listHolder-3b2tc>a")
+	@FindBy(how = How.CSS, using = ".listHolder-3b2tc>a")
 	public List<WebElement> linksinmsr;
+	
+	@FindBy(how = How.XPATH, using = "//*[@data-track-module='am-most_shared_articles^most_shared_articles']/div/div[2]/a/div[1]")
+	public List<WebElement> imgsInMsr;
+
+	@FindBy(how = How.XPATH, using = "//*[@data-track-module='am-most_shared_articles^most_shared_articles']/div/div[2]/a[1]")
+	public WebElement firstMsrArticleLink;
 
 	public boolean isMostSharedModuleDisplayed() {
 		return mostsharedmodule.isDisplayed();
@@ -39,8 +44,13 @@ public class MostSharedPageObj {
 	public boolean MostSharedTitlePresent() {
 		return mostsharedtitle.getText().toUpperCase().equals("MOST SHARED RIGHT NOW");
 	}
-	public boolean verifyTotalArticles(int i){
+
+	public boolean verifyTotalArticles(int i) {
 		return linksinmsr.size() == i;
+	}
+	
+	public String firstMsrArticleUrl() {
+		return firstMsrArticleLink.getAttribute("href");
 	}
 
 }

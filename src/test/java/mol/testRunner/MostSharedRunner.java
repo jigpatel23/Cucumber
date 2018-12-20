@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
         features = "src/test/resources/mol/features/MostsharedModule.feature",
         glue = {"mol.stepDefenations", "mol.utilities"},
         monochrome = true,
+        dryRun = false,
         format = {
                 "pretty",
                 "html:test-output/cucumber-reports",
